@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>riseinfo</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script>
+       function validate(){
+      var x=document.forms["myform"]["question"].value;
+	  var y=document.forms["myform"]["username"].value;
+      var z=document.forms["myform"]["answer"].value;
+	  var w=document.forms["myform3"]["comments"].value;
+	  var p=document.forms["myform3"]["commenter"].value;
+	  if(((y==null || y=="" ) && ( x.length > 0 || z.length > 0 || w.length >0))||((p==null || p=="") && (w.length >0))){
+	       alert("USERNAME IS MANDATORY ! PLEASE FILL IT !!");
+		   return false;
+		   }else{
+		   return true;}
+		}
+      </script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">Agoras</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						
+						<li><a href="http://localhost/proj3sem/upvote5.php"><img src="images/upvote.jpg" width="100" height="96"/>UPVOTE</a></li>
+						<li><a href="http://localhost/proj3sem/downvote5.php"><img src="images/downvote.jpg" width="100" height="96"/>DOWNVOTE</a></li>
+						<li><a href="services.html"><img src="servicebutton.jpeg" width="100" height="38"></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="sidebar">
+				<form  name = "myform" action="submittech.php" onsubmit="return validate()" method="post">
+					<div class="box">
+							<h3>Ask a Question !!!</h3>
+						<p>
+<textarea name="question" id="question" style="width:70%;height:50px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+                     </p>
+					</div>
+						
+						<div class="box">
+						<h3>Enter Your username before giving answer!</h3>
+						<p>
+<textarea name="username" id="username" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+                     </p>
+					</div>
+					<div class="box">
+						<h3>Give Your Answer !!</h3>
+						<p>
+<textarea name="answer" id="answer" style="width:70%;height:70px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+                     </p>
+					</div>
+					</form>
+				</div>
+				<div id="content">
+					<div class="box">
+						<h2> Growth of information Technology </h2>
+						<img class="alignleft" src="images/infor.png" width="200" height="180" alt="" />
+						<p>
+							Computers and information technology (IT) touch nearly every aspect of modern life. Information technology can help with such diverse tasks as driving motor vehicles and diagnosing diseases. IT enables seamless integration and communication between businesses anywhere in the world. To keep IT systems running, a large workforce is needed to maintain networks, create new software, and ensure information security. In addition, the proliferation of smart phones has given rise to a new “app economy,” in which new employment opportunities are available for workers who create the programs that run on mobile devices.1 Unlike many other sectors of the economy, employment in the computer systems design and related services industry (commonly known as IT services) was not significantly affected by the recession of 2007–2009.  The industry lost about 1 percent of its employment in 2009 but regained momentum in 2010, when it surpassed the employment numbers from 2008.2 The high demand for the services provided by this industry has created a large number of fast-growing and high-paying IT jobs.
+
+						   <a href="#">    Read more about</a>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+				         <p>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+						<p>
+						</p>
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+				<h3>Comments</h3>
+				<form  name = "myform3" action="commenttech.php" onsubmit="return validate()" method="post">
+<textarea name="comments" id="comments" style="width:200%;height:40px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+         <div class="box">
+						<h3>Enter Your username before commenting!</h3>
+						<p>
+<textarea name="commenter" id="commenter" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+                     </p>
+					</div>
+</form>
+   <script>
+	   function display()
+	   {
+	   document.getElementById("Submit").innerHTML="submitted";
+	   }
+	</script>		
+                     	
+					<!--<ul class="list">
+						<li class="first"><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>-->
+				</div> 
+				<div id="page-bottom-content">
+					<h3></h3>
+					<p>
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			Copyright &copy; Untitled | Design by Agoras Technical Team</a>
+		</div>
+	</body>
+</html>

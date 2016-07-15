@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slider</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />  
+	<meta name="keywords" content="Slider, Hi Slider, Simple HTML5 Slideshow, Free js slider" />
+	<meta name="description" content="Slider created with Hi Slider which enable you to publish responsive jQuery image slideshows, seamless WordPress slider plugins, amazing website sliding banners and fancy JavaScript slideshow presentation" />     
+  <script type="text/javascript" src="sliderengine/jquery.js"></script><script type="text/javascript" src="sliderengine/jquery.hislider.js"></script><link rel="stylesheet" type="text/css" href="sliderengine/LightBox.css" /><link rel="stylesheet" type="text/css" href="sliderengine/engine.css" /><link rel="stylesheet" type="text/css" href="sliderengine/template.css" /><script type="text/javascript" src="sliderengine/hiSliderHelpComponent.js"></script> <script type="text/javascript" src="sliderengine/HSStatusBarPlugin.js"></script>
+      
+        <style>
+        	
+        	html {}
+body {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box !important;
+	width: 100% !important;
+	margin: 0px;
+
+	padding-left: 19px;
+	padding-top: 19px;	
+}
+.ruler {
+	background: rgba(255,255,255,1);
+	color: #444;
+	font-family: source code pro, "Arial Narrow", "Helvetica Neue", Helvetica, Arial, Veranda, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	overflow: hidden;
+}
+.ruler > div {
+	background: #444;
+}
+.hRule {
+	position: fixed;
+	width: 100%;
+	height: 18px;
+	left: 0px;
+	top: 0px;
+	
+	border-bottom: 1px solid;
+	z-index: 0;
+}
+.vRule {
+	position: absolute;
+	
+	min-height: 100%;
+	width: 18px;
+	left: 0px;
+	top: 0px;
+	
+	border-right: 1px solid;
+	z-index: 0;
+
+}
+.corner {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 18px;
+	height: 18px;
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	z-index: 1;
+}
+.hRule .tickLabel {
+	position: absolute;
+	top: 0px;
+	width: 1px;
+	height: 100%;
+	text-indent: 1px;
+}
+.hRule .tickMajor {
+	position: absolute;
+	bottom: 0px;
+	width: 1px;
+	height: 6px;
+}
+.hRule .tickMinor {
+	position: absolute;
+	bottom: 0px;
+	width: 1px;
+	height: 4px;
+}
+.vRule .tickLabel {
+	position: absolute;
+	right: 0px;
+	height: 1px;
+	width: 100%;
+	text-indent: 1px;
+}
+.vRule .tickLabel span {
+	display: block;
+	position: absolute;
+	
+	top: 1px;
+	right: 0px;
+	margin-right: 18px;
+	
+	-webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+	
+	-webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -ms-transform-origin: top right;
+  -o-transform-origin: top right;
+  transform-origin: top right;
+	
+}
+.vRule .tickMajor {
+	position: absolute;
+	right: 0px;
+	height: 1px;
+	width: 6px;
+}
+.vRule .tickMinor {
+	position: absolute;
+	right: 0px;
+	height: 1px;
+	width: 4px;
+}
+
+.vMouse {
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 0px;
+	
+	left: 0;
+	background: rgba(0,0,0,0);
+	border-bottom: 1px dotted;
+	z-index: 11;
+}
+.hMouse {
+	display: block;
+	position: fixed;
+	height: 100%;
+	width: 0px;
+	top: 0;
+
+	background: rgba(0,0,0,0);
+	border-left: 1px dotted;
+	z-index: 1;
+}
+.mousePosBox {
+	height: 16px;
+	background: rgba(0,0,0,0.25);
+	color: #fff;
+	font-family: source code pro;
+	font-size: 12px;
+	line-height: 16px;
+	border: 1px solid rgba(0,0,0,0.5);
+	position: fixed;
+	white-space: no-wrap;
+	display: block;
+	overflow-y:hidden;
+	float: left;
+	text-align: left;
+	left: -50%;
+	top: -50%;
+	padding: 0 2px;
+}
+        	</style>
+        <script language="JavaScript">
+       
+        /**
+ * jQuery.Ruler v1.1
+ * Add Photoshop-like rulers and mouse position to a container element using jQuery.
+ * http://ruler.hilliuse.com
+ * 
+ * Dual licensed under the MIT and GPL licenses.
+ * Copyright 2013 Hillius Ettinoffe http://hilliuse.com
+ */
+;(function( $ ){
+  var Modernizr={}
+	$.fn.ruler = function(options) {
+	 	function onMouseXY(xx,yy){
+	 		$('.mousePosBox').html("x:" + xx + ", y:" + yy).css({
+							top: 16,
+							left: 16
+					});
+	 	}
+		var defaults = {
+			vRuleSize: 18,
+			hRuleSize: 18,
+			showCrosshair : true,
+			showMousePos: true,
+			onMouseXY:onMouseXY
+		};//defaults
+		this.defaults=defaults;
+		var settings = $.extend({},defaults,options);
+		
+		var hRule = '<div class="ruler hRule"></div>',
+				vRule = '<div class="ruler vRule"></div>',
+				corner = '<div class="ruler corner"></div>',
+				vMouse = '<div class="vMouse"></div>',
+				hMouse = '<div class="hMouse"></div>',
+				mousePosBox = '<div class="mousePosBox">x: 50%, y: 50%</div>';
+		
+		if (!Modernizr.touch) {
+			// Mouse crosshair
+			if (settings.showCrosshair) {
+				$('body').append(vMouse, hMouse);
+			}
+			// Mouse position
+			if (settings.showMousePos) {
+				$('body').append(mousePosBox);
+			}
+			// If either, then track mouse position
+			if (settings.showCrosshair || settings.showMousePos) {
+				$(window).mousemove(function(e) {
+					if (settings.showCrosshair) {
+						$('.vMouse').css("top",e.pageY-($(document).scrollTop())+1);
+						$('.hMouse').css("left",e.pageX+1);
+						//-($(window).scrollTop())
+					}
+					if (settings.showMousePos) {
+						/**
+						$('.mousePosBox').html("x:" + (e.pageX-settings.vRuleSize) + ", y:" + (e.pageY-settings.hRuleSize) ).css({
+							top: e.pageY-($(document).scrollTop()) + 16,
+							left: e.pageX + 12
+						});
+						***/
+						if(defaults.onMouseXY){
+							defaults.onMouseXY(e.pageX-settings.vRuleSize,e.pageY-settings.hRuleSize);
+						}
+						/**
+						$('.mousePosBox').html("x:" + (e.pageX-settings.vRuleSize) + ", y:" + (e.pageY-settings.hRuleSize)
+					//	+',Image Width:'+$(".SliderContainer").outerWidth(true)
+					//	+',Image Height:'+$(".SliderContainer").outerHeight(true)
+					//	+',Slider Width:'+$(".hiSlider-SliderApp").outerWidth(true) 
+					//	+',Slider Height:'+$(".hiSlider-SliderApp").outerHeight(true) 						
+						  ).css({
+							top: 16,
+							left: 16
+						});
+						***/
+					}
+				});
+			}
+		}
+		var kk;
+		//resize
+		$(window).resize(function(e){
+			clearTimeout(kk);
+			kk=setTimeout(function(){
+			var $hRule = $('.hRule');
+			var $vRule = $('.vRule');
+			$hRule.empty();
+			$vRule.empty().height(0).outerHeight($vRule.parent().outerHeight());
+			
+			// Horizontal ruler ticks
+			var tickLabelPos = settings.vRuleSize;
+			var newTickLabel = "";
+			
+			var h1=$hRule;
+			var v1= $vRule;
+			$hRule=$('<div></div>');
+			$vRule=$('<div></div>');
+			
+			while ( tickLabelPos <= h1.width() ) {
+				if ((( tickLabelPos - settings.vRuleSize ) %50 ) == 0 ) {
+					newTickLabel = "<div class='tickLabel'>" + ( tickLabelPos - settings.vRuleSize ) + "</div>";
+					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
+				} else if ((( tickLabelPos - settings.vRuleSize ) %10 ) == 0 ) {
+					newTickLabel = "<div class='tickMajor'></div>";
+					$(newTickLabel).css("left",tickLabelPos+"px").appendTo($hRule);
+				} else if ((( tickLabelPos - settings.vRuleSize ) %5 ) == 0 ) {
+					newTickLabel = "<div class='tickMinor'></div>";
+					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
+				}
+				tickLabelPos = (tickLabelPos + 5);				
+			}//hz ticks
+			$hRule.children().appendTo(h1);
+			// Vertical ruler ticks
+			tickLabelPos = settings.hRuleSize;
+			newTickLabel = "";
+			while (tickLabelPos <= v1.height()) {
+				if ((( tickLabelPos - settings.hRuleSize ) %50 ) == 0) {
+					newTickLabel = "<div class='tickLabel'><span>" + ( tickLabelPos - settings.hRuleSize ) + "</span></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				} else if (((tickLabelPos - settings.hRuleSize)%10) == 0) {
+					newTickLabel = "<div class='tickMajor'></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				} else if (((tickLabelPos - settings.hRuleSize)%5) == 0) {
+					newTickLabel = "<div class='tickMinor'></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				}
+				tickLabelPos = ( tickLabelPos + 5 );	
+				
+				$vRule.children().appendTo(v1);			
+			}//vert ticks
+			
+		},500)
+		});//resize
+		
+		return this.each(function() {
+			var $this = $(this);
+			
+			// Attach rulers
+			
+			// Should not need 1 min padding-top of 1px but it does
+			// will figure it out some other time
+			$this.css("padding-top", settings.hRuleSize + 1 + "px");
+			if (settings.hRuleSize > 0) {				
+				$(hRule).height(settings.hRuleSize).prependTo($this);
+			}
+			
+			if (settings.vRuleSize > 0) {
+				var oldWidth = $this.outerWidth();
+				$this.css("padding-left", settings.vRuleSize + 1 + "px").outerWidth(oldWidth);
+				$(vRule).width(settings.vRuleSize).height($this.outerHeight()).prependTo($this);
+			}
+			
+			if ( (settings.vRuleSize > 0) && (settings.hRuleSize > 0) ) {
+				$(corner).css({
+					width: settings.vRuleSize,
+					height: settings.hRuleSize
+				}).prependTo($this);
+			}
+			
+			
+			var $hRule = $this.children('.hRule');
+			var $vRule = $this.children('.vRule');
+		
+			// Horizontal ruler ticks
+			var tickLabelPos = settings.vRuleSize;
+			var newTickLabel = "";
+			
+			var h1=$hRule;
+			var v1= $vRule;
+			$hRule=$('<div></div>');
+			$vRule=$('<div></div>');
+			
+			while ( tickLabelPos <= h1.width() ) {
+				if ((( tickLabelPos - settings.vRuleSize ) %50 ) == 0 ) {
+					newTickLabel = "<div class='tickLabel'>" + ( tickLabelPos - settings.vRuleSize ) + "</div>";
+					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
+				} else if ((( tickLabelPos - settings.vRuleSize ) %10 ) == 0 ) {
+					newTickLabel = "<div class='tickMajor'></div>";
+					$(newTickLabel).css("left",tickLabelPos+"px").appendTo($hRule);
+				} else if ((( tickLabelPos - settings.vRuleSize ) %5 ) == 0 ) {
+					newTickLabel = "<div class='tickMinor'></div>";
+					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
+				}
+				tickLabelPos = (tickLabelPos + 5);				
+			}//hz ticks
+			$hRule.children().appendTo(h1);
+			
+			
+			// Vertical ruler ticks
+			tickLabelPos = settings.hRuleSize;
+			newTickLabel = "";
+			while (tickLabelPos <= v1.height()) {
+				if ((( tickLabelPos - settings.hRuleSize ) %50 ) == 0) {
+					newTickLabel = "<div class='tickLabel'><span>" + ( tickLabelPos - settings.hRuleSize ) + "</span></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				} else if (((tickLabelPos - settings.hRuleSize)%10) == 0) {
+					newTickLabel = "<div class='tickMajor'></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				} else if (((tickLabelPos - settings.hRuleSize)%5) == 0) {
+					newTickLabel = "<div class='tickMinor'></div>";
+					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
+				}
+				tickLabelPos = ( tickLabelPos + 5 );				
+			}//vert ticks			
+			$vRule.children().appendTo(v1);
+		});//each		
+		
+	};//ruler
+})( jQuery );	
+
+
+$(function() {
+   window.HSRuler=$('body').ruler({
+        vRuleSize: 18,
+        hRuleSize: 18,
+        showCrosshair : false,
+        showMousePos: true
+    });    
+});
+        </script>
+        
+<script type="text/javascript">
+	$(document).ready(function(){
+		var hsstatusbar = new HSStatusBarPlugin();
+		hsstatusbar.addStatus("0","-",1);
+		hsstatusbar.addStatus("1","0,0 ",85);
+		hsstatusbar.addStatus("2","-",185);
+		hsstatusbar.addStatus("3","-",185); 
+		window.HSRuler.defaults.onMouseXY=function(xx,yy){
+			hsstatusbar.changeStatus("1","x:"+xx+",y:"+yy);
+		}
+			
+			
+		setTimeout(function(){	
+		setInterval(function(){
+				hsstatusbar.changeStatus("2","Image Size:"+ $(".SliderContainer .dataContainer .data").width()+","+$(".SliderContainer .dataContainer .data").height());
+			  hsstatusbar.changeStatus("3","Slider Size:"+ $(".hiSlider-SliderApp").width()+","+$(".hiSlider-SliderApp").height());
+
+		},1000);
+	},2500);
+			 
+			
+			
+			
+		}); 
+</script>        
+        
+        
+
+  <style>
+  	html,body{height:100%; margin:0px;}	
+  </style> 
+</head>
+<body style="background-color:#dddddd;">
+	
+	<!----begin------Insert to your webpage where you want to display the slider-->
+        <div id='hislider1' style=" max-width:800px;  max-height:240px;height:100%; margin: 0 auto;">
+        	
+        	<noscript>The slider is powered by <strong>Hi Slider</strong>, a easy jQuery image slider from <a target="_blank" href="hislider.com">hislider.com</a>. Please enable JavaScript to view.</noscript><div class="hi-about-text" style="display:none">This jQuery slider was created with the free <a style="color:#FFF;" href="http://hislider.com" target="_blank">Hi Slider</a> for WordPress plugin,Joomla & Drupal Module from hislider.com.<br /><br /><a style="color:#FFF;" href="#" class="hi-about-ok">OK</a></div><div class="hi-slider-watermark"  style="display:none"><a href="http://hislider.com" target="_blank">hislider.com</a></div>
+        </div>
+      <!----end------Insert to your webpage where you want to display the slider-->
+</body> 
+</html>

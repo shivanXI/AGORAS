@@ -1,0 +1,2 @@
+backgroundColor=0xcccccc
+LoadingGIF=PROJECT_RESOURCE:LoadingGIF.gif

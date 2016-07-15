@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>latestmovies</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script>
+       function validate(){
+      var x=document.forms["myform"]["question"].value;
+	  var y=document.forms["myform"]["username"].value;
+      var z=document.forms["myform"]["answer"].value;
+	  var w=document.forms["myform3"]["comments"].value;
+	  var p=document.forms["myform3"]["gamer"].value;
+	  if(((y==null || y=="" ) && ( x.length > 0 || z.length > 0 || w.length >0))||((p==null || p=="") && (w.length >0))){
+	       alert("USERNAME IS MANDATORY ! PLEASE FILL IT !!");
+		   return false;
+		   }else{
+		   return true;}
+		}
+      </script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">Agoras</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						
+						<li><a href="http://localhost/proj3sem/upvote2.php"><img src="images/upvote.jpg" width="100" height="96"/>UPVOTE</a></li>
+						<li><a href="http://localhost/proj3sem/downvote2.php"><img src="images/downvote.jpg" width="100" height="96"/>DOWNVOTE</a></li>
+						<li><a href="services.html"><img src="servicebutton.jpeg" width="100" height="38"/></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="sidebar">
+				<form  name = "myform" action="submitmovie.php" onsubmit="return validate()" method="post">
+					<div class="box">
+						<h3>Ask a Question !!!</h3>
+						<p>
+				        
+<textarea name="question" id="question" style="width:70%;height:50px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+						</p>
+					</div>
+					
+					<div class="box">
+						<h3>Enter Your username before giving answer!</h3>
+						<p>
+<textarea name="username" id="username" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;"required>
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+	</p>
+	</div>
+					
+					<div class="box">
+						<h3>Give Your Answer !!</h3>
+					     <p>
+<textarea name="answer" id="answer" style="width:70%;height:70px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+             </p>
+					</div>
+					</form>
+				</div>
+				<div id="content">
+					<div class="box">
+						<h2> Titli Movie Review </h2>
+						<img class="alignleft" src="images/titli.jpg" width="257" height="196" alt="" />
+						<p>
+							CRITIC'S RATING: 3.5/5
+AVG READERS' RATING: 3.4/5
+CAST: Shashank Arora, Ranvir Shorey, Amit Sial, Shivani Raghuvanshi
+DIRECTION: Kanu Behl
+GENRE: Drama
+DURATION: 1 hour 57 minutes
+STORY: Kanu Behl's promising debut is a riveting account of survival, unfulfilled dreams, emotional meltdowns and crime. Set in Delhi's dystopic underbelly, the film terrifyingly lingers in your mind long after you've seen it.
+
+MOVIE REVIEW: Right from the opening scene, Titli snatches you from the safe and secure confines of your home and drops you amidst the violent chaos, caused by the crime inflicting dysfunctional family.
+Revolving around three brothers, reminiscent of our society's patriarchal hooliganism, the drama plays around with your mind in varied ways. Titli (Shashank Arora), youngest among the three, aspires to distance himself from his indignant brothers (Ranvir Shorey, and Amit Sial) owing to their dubious behaviour. He hopes for a better future.
+
+The father on the contrary, nonchalantly watches his elder sons partaking in nefarious activities, as long as they put food on the table. With no steady income at hand, the family unapologetically resorts to crime. In order to clip his wings, they get Titli married to naive but headstrong Neelu (Shivani Raghuvanshi). She secretly harbours her own set of dreams. Can the two escape the family trap?
+
+Morally ambiguous initially, it's the flawed characters that make this noirish crime drama compelling. They are not one-dimensional, which makes you empathise with them despite their eccentricities. Brutally real, Titli is essentially a disturbing tale on deep-rooted frustration and a sense of worthlessness that stems the criminal culture in India.
+It explores our modern-day opportunistic and exploitative tendencies. 
+						   <a href="#">    Read more about</a>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+				         <p>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+						<p>
+						</p>
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+				<h3>Comments</h3>
+				<form  name = "myform3" action="commentmov.php" onsubmit="return validate()" method="post">
+<textarea name="comments" id="comments" style="width:200%;height:40px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+              
+			  <div class="box">
+						<h3>Enter Your username before commenting!</h3>
+						<p>
+    <textarea name="gamer" id="gamer" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;"required>
+    </textarea>
+    <button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+	</p>
+	</div>
+  </form>
+   <script>
+	   function display()
+	   {
+	   document.getElementById("Submit").innerHTML="submitted";
+	   }
+	</script>		
+                    	
+					<!--<ul class="list">
+						<li class="first"><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>-->
+				</div> 
+				<div id="page-bottom-content">
+					<h3></h3>
+					<p>
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			Copyright &copy; Untitled | Design by Agoras Technical Team</a>
+		</div>
+	</body>
+</html>

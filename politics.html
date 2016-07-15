@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>polyticsspices</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script>
+       function validate(){
+      var x=document.forms["myform"]["question"].value;
+	  var y=document.forms["myform"]["username"].value;
+      var z=document.forms["myform"]["answer"].value;
+	  var w=document.forms["myform3"]["comments"].value;
+	   var p=document.forms["myform3"]["user"].value;
+	  if(((y==null || y=="" ) && ( x.length > 0 || z.length > 0 || w.length >0))||((p==null || p=="") && (w.length >0))){
+	       alert("USERNAME IS MANDATORY ! PLEASE FILL IT !!");
+		   return false;
+		   }else{
+		   return true;}
+		}
+      </script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1><a href="#">Agoras</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						
+						<li><a href="http://localhost/proj3sem/upvote3.php"><img src="images/upvote.jpg" width="100" height="96"/>UPVOTE</a></li>
+						<li><a href="http://localhost/proj3sem/downvote3.php"><img src="images/downvote.jpg" width="100" height="96"/>DOWNVOTE</a></li>
+						<li><a href="services.html"><img src="servicebutton.jpeg" width="100" height="38"/></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>
+					<br class="clearfix" />
+				</div>
+			</div>
+			<div id="page">
+				<div id="sidebar">
+					<form name = "myform" action="submitpolitics.php" onsubmit="return validate()"  method="post">
+					<div class="box">
+						<h3>Ask a Question !!!</h3>
+						<p>
+				        
+<textarea name="question" id="question" style="width:70%;height:50px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+						</p>
+						
+					</div>
+					<div class="box">
+						<h3>Enter Your username before giving answer!</h3>
+						<p>
+<textarea name="username" id="username" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+					</p></div>
+					<div class="box">
+						<h3>Give Your Answer !!</h3>
+						<p>
+<textarea name="answer" id="answer" style="width:70%;height:70px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+					</p></div>
+					</form>
+				</div>
+				<div id="content">
+					<div class="box">
+						<h2>Power push by AAP govt to win over Sikhs</h2>
+						<img class="alignleft" src="images/aap.jpe" width="206" height="212" alt="" />
+						<p>
+							INew Delhi: With Delhi and Punjab municipal elections on the anvil, the AAP government is going all out to consolidate the Sikh community that has so far been considered a BJP votebank. To woo the anti-Sikh riot victims, the Delhi government on Thursday extended the scope of the power amnesty scheme to a few of their colonies.
+
+The Delhi government on Thursday also extended the Bijli Bill Vivad Samadhan scheme for the second time by another two months. The scheme will now end on December 31. Initially, the scheme had been valid till September 30, but it had been extended to October 31.
+
+						   <a href="#">    Read more about</a>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+				         <p>
+						</p>
+					</div>
+					<div class="box">
+						<h3></h3>
+						<p>
+						</p>
+					</div>
+					<br class="clearfix" />
+				</div>
+				<br class="clearfix" />
+			</div>
+			<div id="page-bottom">
+				<div id="page-bottom-sidebar">
+				<h3>Comments</h3>
+				<form name = "myform3" action="commentpoli.php" onsubmit="return validate()" method="post">
+<textarea name="comments" id="comments" style="width:200%;height:40px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+                 <div class="box">
+						<h3>Enter Your username before commenting!</h3>
+						<p>
+<textarea name="user" id="user" style="width:70%;height:20px;padding:2%;font:1.4em/1.6em cursive;background-color:white;">
+</textarea>
+<button id="Submit" onclick="display()" style="font-size: 14px;;background-color:cyan;color:white;">Submit</button>
+					</p></div>
+</form>
+   <script>
+	   function display()
+	   {
+	   document.getElementById("Submit").innerHTML="submitted";
+	   }
+	</script>		
+                     	
+					<!--<ul class="list">
+						<li class="first"><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li class="last"><a href="#"></a></li>
+					</ul>-->
+				</div> 
+				<div id="page-bottom-content">
+					<h3></h3>
+					<p>
+					</p>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">
+			Copyright &copy; Untitled | Design by Agoras Technical Team</a>
+		</div>
+	</body>
+</html>
