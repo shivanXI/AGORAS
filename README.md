@@ -1,0 +1,1 @@
+A dynamic web platform named “AGORAS” which is essentially a discussion forum having facilities of upvote and downvote , comment , questions and answers . It is a very user friendly platform having 21 features of backend with the help of javascript and php so that user can use these features to know what is going on the forum.
